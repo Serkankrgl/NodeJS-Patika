@@ -33,8 +33,8 @@
                             <% for(let i=0; i<photos.length;i++){ %>
                                 <div class="col-lg-4 col-md-6 col-sm-12 tm-catalog-item">
                                     <div class="position-relative tm-thumbnail-container">
-                                        <img src="img/tn-01.jpg" alt="Image" class="img-fluid tm-catalog-item-img">
-                                        <a href="photo/<%= photos[i]._id %>" class="position-absolute tm-img-overlay">
+                                        <img src="<%= photos[i].image %>" alt="Image" class="img-fluid tm-catalog-item-img">
+                                        <a href="photos/<%= photos[i]._id %>" class="position-absolute tm-img-overlay">
                                             <i class="fas fa-play tm-overlay-icon"></i>
                                         </a>
                                     </div>
@@ -52,13 +52,27 @@
 
                         <!-- Catalog Paging Buttons -->
                         <div>
-                            <ul class="nav tm-paging-links">
-                                <li class="nav-item active"><a href="#" class="nav-link tm-paging-link">1</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link tm-paging-link">2</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link tm-paging-link">3</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link tm-paging-link">4</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link tm-paging-link">></a></li>
-                            </ul>
+                            <% if(pages>0){ %>
+                                <ul class="nav tm-paging-links">
+                                    <% for(let j=1;j<=pages;j++) { %>
+                                        <% if(j===current) { %>
+                                            <li class="nav-item active">
+                                                <a href="/?page=<%= j %>" class="nav-link tm-paging-link">
+                                                    <%= j %>
+                                                </a>
+                                            </li>
+                                    
+                                            <% } else{ %>
+                                                <li class="nav-item">
+                                                    <a href="/?page=<%= j %>" class="nav-link tm-paging-link">
+                                                        <%= j %>
+                                                    </a>
+                                                </li>
+                                    
+                                                <% } %>
+                                                    <% } %>
+                                                        </ul>
+                            <% } %>
                         </div>
                     </main>
 
